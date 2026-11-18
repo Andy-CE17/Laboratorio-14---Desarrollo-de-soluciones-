@@ -8,7 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Lab14\\\\": "src/"
+      "Lab14\\": "src/"
     }
   },
   "scripts": {

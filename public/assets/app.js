@@ -42,11 +42,14 @@ const image = $('#secure-media');
 const loader = $('#media-loader');
 const errorState = $('#media-error');
 
-image.addEventListener('load', () => {
+const showLoadedMedia = () => {
   loader.hidden = true;
   errorState.hidden = true;
+  image.hidden = false;
   image.classList.add('ready');
-});
+};
+
+image.addEventListener('load', showLoadedMedia);
 
 image.addEventListener('error', () => {
   loader.hidden = true;
@@ -62,6 +65,10 @@ $('#refresh-media').addEventListener('click', () => {
   image.src = `api/media.php?t=${Date.now()}`;
   loadStatus();
 });
+
+if (image.complete && image.naturalWidth > 0) {
+  showLoadedMedia();
+}
 
 loadStatus();
 

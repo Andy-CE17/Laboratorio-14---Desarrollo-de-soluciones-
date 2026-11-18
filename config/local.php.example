@@ -3,6 +3,6 @@
 return [
     'AWS_REGION' => 'us-east-2',
     'S3_BUCKET' => 'lab14-secure-media-your-account',
-    'S3_OBJECT_KEY' => 'gallery/secure-stadium.svg',
+    'S3_OBJECT_KEY' => 'gallery/coastal-research-archive.png',
     'KMS_KEY_ALIAS' => 'alias/lab14-secure-gallery',
 ];

@@ -20,7 +20,7 @@ async function loadStatus() {
 
     const data = payload.data;
     $('#metric-status').textContent = 'Protegida';
-    $('#metric-status').closest('article').classList.add('online');
+    $('#metric-status').closest('.proof-row')?.classList.add('online');
     $('#metric-region').textContent = data.region;
     $('#status-bucket').textContent = maskBucket(data.bucket);
     $('#status-encryption').textContent = data.encryption;

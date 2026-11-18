@@ -6,129 +6,80 @@ declare(strict_types=1);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Demostración de seguridad en AWS: contenido privado de S3 cifrado con KMS.">
-    <title>Aegis Vault · Laboratorio 14</title>
+    <meta name="description" content="Archivo privado en Amazon S3 con cifrado SSE-KMS y acceso autorizado desde PHP.">
+    <title>Aegis Cloud Archive · Laboratorio 14</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<div class="ambient ambient-one"></div>
-<div class="ambient ambient-two"></div>
-
-<header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Aegis Vault, inicio">
-        <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" role="img"><path d="M20 3 34 9v10c0 8.8-5.8 15.4-14 18-8.2-2.6-14-9.2-14-18V9l14-6Z"/><path d="M14 19.5 18.2 24 27 14.8"/></svg>
-        </span>
-        <span>Aegis<span>Vault</span></span>
-    </a>
-    <nav aria-label="Navegación principal">
-        <a href="#archivo">Archivo protegido</a>
-        <a href="#arquitectura">Arquitectura</a>
-        <a href="#evidencia">Evidencia</a>
+<header class="site-header">
+    <nav class="shell nav" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="Aegis Cloud Archive, inicio">
+            <span class="brand-mark"><i></i><b>A</b></span>
+            <span class="brand-copy"><strong>Aegis Cloud Archive</strong><small>ARCHIVO PRIVADO EN LA NUBE</small></span>
+        </a>
+        <div class="nav-links"><a class="active" href="#inicio">Inicio</a><a href="#archivo">Archivo seguro</a><a href="#arquitectura">Arquitectura</a><a href="#evidencia">Evidencia</a></div>
+        <a class="button button-small" href="#archivo">Ver demostración <span>→</span></a>
     </nav>
-    <div class="lab-badge"><span></span> Laboratorio 14</div>
 </header>
 
-<main id="inicio">
-    <section class="hero section-shell">
-        <div class="hero-copy">
-            <div class="eyebrow"><span></span> SEGURIDAD EN SERVICIOS AWS</div>
-            <h1>Tu contenido privado,<br><em>protegido por diseño.</em></h1>
-            <p class="hero-lead">Una demostración real de cifrado en reposo: Amazon S3 conserva el archivo, AWS KMS controla su clave y PHP lo entrega únicamente a identidades autorizadas.</p>
-            <div class="hero-actions">
-                <a class="button button-primary" href="#archivo">Ver archivo seguro <span>↘</span></a>
-                <a class="button button-ghost" href="#arquitectura">Explorar el flujo</a>
-            </div>
-            <div class="trust-row" aria-label="Características de seguridad">
-                <span><b>01</b> Bucket privado</span>
-                <span><b>02</b> Cifrado SSE-KMS</span>
-                <span><b>03</b> Acceso controlado</span>
+<main>
+    <section class="hero" id="inicio">
+        <div class="hero-shade"></div>
+        <div class="shell hero-inner">
+            <div class="hero-copy">
+                <p class="eyebrow"><span></span>AWS S3 + SSE-KMS</p>
+                <h1>Archivos privados.<br><em>Acceso bajo control.</em></h1>
+                <p class="hero-lead">Protegemos contenido sensible en Amazon S3 con cifrado y acceso autorizado desde la aplicación.</p>
+                <div class="hero-actions"><a class="button" href="#archivo">Ver demostración <span>→</span></a><a class="ghost-button" href="#arquitectura"><i>▶</i> Cómo funciona</a></div>
+                <div class="proof-row"><span><b id="metric-region">us-east-2</b> Región activa</span><span><b id="metric-status">Verificando…</b> Estado de conexión</span></div>
             </div>
         </div>
-
-        <div class="hero-visual" aria-label="Representación del archivo protegido">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-            <div class="vault-core">
-                <div class="core-grid"></div>
-                <svg class="shield-large" viewBox="0 0 100 116" aria-hidden="true">
-                    <path d="M50 4 91 21v29c0 29-16.8 50.7-41 61C25.8 100.7 9 79 9 50V21L50 4Z"/>
-                    <path d="m31 57 12 12 27-29"/>
-                </svg>
-            </div>
-            <div class="data-chip chip-top"><span>AES</span><b>256</b></div>
-            <div class="data-chip chip-bottom"><span>STATUS</span><b>ENCRYPTED</b></div>
-            <div class="visual-caption">Cifrado de nivel empresarial<br><span>Clave administrada en AWS KMS</span></div>
+        <div class="shell feature-rail" aria-label="Características de seguridad">
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="10" rx="15" ry="6"/><path d="M9 10v12c0 3 7 6 15 6s15-3 15-6V10M9 22v12c0 3 7 6 15 6s15-3 15-6V22"/></svg><strong>Almacenamiento privado</strong></article>
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="29" cy="16" r="9"/><path d="m23 22-15 15m4-4 4 4m1-10 4 4m14-21-6 6"/></svg><strong>Cifrado SSE-KMS</strong></article>
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4c5 4 10 5 15 6v12c0 10-6 17-15 22C15 39 9 32 9 22V10c5-1 10-2 15-6Z"/><path d="m17 24 5 5 10-11"/></svg><strong>Acceso autorizado</strong></article>
         </div>
     </section>
 
-    <section class="metrics section-shell" aria-label="Resumen del laboratorio">
-        <article><span class="metric-icon">◆</span><div><small>ALMACENAMIENTO</small><strong>Amazon S3</strong></div></article>
-        <article><span class="metric-icon">⌁</span><div><small>CIFRADO</small><strong>SSE-KMS</strong></div></article>
-        <article><span class="metric-icon">◎</span><div><small>REGIÓN</small><strong id="metric-region">us-east-2</strong></div></article>
-        <article><span class="pulse-dot"></span><div><small>CONEXIÓN</small><strong id="metric-status">Verificando…</strong></div></article>
-    </section>
-
-    <section class="secure-section section-shell" id="archivo">
-        <div class="section-heading">
-            <div><div class="eyebrow"><span></span> OBJETO CIFRADO</div><h2>La evidencia, servida de forma segura.</h2></div>
-            <p>El navegador nunca recibe credenciales de AWS. PHP solicita el objeto desde el servidor utilizando una identidad autorizada.</p>
-        </div>
-
-        <div class="media-layout">
-            <article class="media-card">
-                <div class="media-toolbar">
-                    <div class="window-dots"><i></i><i></i><i></i></div>
-                    <span>VISTA AUTORIZADA</span>
-                    <button id="refresh-media" type="button" aria-label="Actualizar archivo">↻</button>
+    <section class="secure-section" id="archivo">
+        <div class="shell secure-intro">
+            <div><p class="eyebrow"><span></span>OBJETO CIFRADO EN REPOSO</p><h2>Seguridad simple<br>de <em>entender.</em></h2><p>Un archivo privado en la nube con cifrado y control de acceso, listo para tus aplicaciones.</p></div>
+            <div class="secure-visual">
+                <div class="photo-frame">
+                    <div id="media-loader" class="media-loader"><span></span><p>Solicitando objeto protegido…</p></div>
+                    <img id="secure-media" src="api/media.php" alt="Archivo fotográfico privado recuperado desde Amazon S3">
+                    <div id="media-error" class="media-error" hidden><b>Recurso no disponible</b><span>Comprueba la sesión de AWS.</span></div>
+                    <div class="photo-caption"><span>ARCHIVO PRIVADO · AMAZON S3</span><b id="object-size">—</b></div>
                 </div>
-                <div class="media-frame">
-                    <div class="media-loader" id="media-loader"><span></span><p>Descifrando recurso con AWS KMS…</p></div>
-                    <img id="secure-media" src="api/media.php" alt="Ilustración privada recuperada desde Amazon S3 con cifrado KMS">
-                    <div class="media-error" id="media-error" hidden><strong>Acceso no disponible</strong><p>Verifica la configuración de S3 y los permisos de la clave KMS.</p></div>
-                </div>
-                <div class="media-meta"><span>PRIVATE OBJECT</span><span id="object-size">—</span></div>
-            </article>
+                <span class="cloud-lock" aria-hidden="true"><i></i></span>
+            </div>
+        </div>
 
-            <aside class="security-panel" id="evidencia">
-                <div class="panel-kicker">INFORMACIÓN DE SEGURIDAD</div>
-                <h3>Cadena de protección</h3>
-                <p class="panel-intro">Metadatos obtenidos directamente del objeto almacenado en AWS.</p>
-                <dl class="status-list">
-                    <div><dt><span class="status-icon">S3</span> Bucket privado</dt><dd id="status-bucket">Verificando…</dd></div>
-                    <div><dt><span class="status-icon">K</span> Método de cifrado</dt><dd id="status-encryption">—</dd></div>
-                    <div><dt><span class="status-icon">#</span> Clave KMS</dt><dd id="status-key">—</dd></div>
-                    <div><dt><span class="status-icon">◷</span> Última validación</dt><dd id="status-time">—</dd></div>
-                </dl>
-                <div class="verified-stamp"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg><div><strong>Protección verificada</strong><span>El archivo permanece cifrado en reposo.</span></div></div>
-            </aside>
+        <div class="shell status-panel" id="evidencia">
+            <div><small>VERIFICACIÓN EN VIVO</small><h3>Protección confirmada</h3><p>Metadatos consultados directamente desde el objeto almacenado.</p></div>
+            <dl><div><dt>Bucket privado</dt><dd id="status-bucket">Verificando…</dd></div><div><dt>Cifrado activo</dt><dd id="status-encryption">—</dd></div><div><dt>Clave KMS</dt><dd id="status-key">—</dd></div><div><dt>Última validación</dt><dd id="status-time">—</dd></div></dl>
+            <button id="refresh-media" type="button">Actualizar recurso ↻</button>
         </div>
     </section>
 
-    <section class="architecture section-shell" id="arquitectura">
-        <div class="section-heading compact">
-            <div><div class="eyebrow"><span></span> ARQUITECTURA</div><h2>Una solicitud. Tres capas de confianza.</h2></div>
-        </div>
-        <div class="flow" aria-label="Flujo de acceso seguro">
-            <article><span class="step">01</span><div class="flow-icon">&lt;/&gt;</div><h3>Aplicación PHP</h3><p>Recibe la solicitud sin exponer secretos ni credenciales al navegador.</p></article>
-            <div class="flow-line"><span>HTTPS</span></div>
-            <article><span class="step">02</span><div class="flow-icon">S3</div><h3>Amazon S3</h3><p>Valida la identidad y localiza el objeto dentro del bucket privado.</p></article>
-            <div class="flow-line"><span>DECRYPT</span></div>
-            <article><span class="step">03</span><div class="flow-icon">KMS</div><h3>AWS KMS</h3><p>Autoriza el uso de la clave y descifra el contenido de forma transparente.</p></article>
+    <section class="architecture" id="arquitectura">
+        <div class="shell">
+            <p class="eyebrow"><span></span>FLUJO DE PROTECCIÓN</p>
+            <div class="architecture-heading"><h2>El navegador ve el archivo.<br><em>No ve las credenciales.</em></h2><p>La aplicación PHP mantiene la identidad en el servidor y solicita el objeto cifrado mediante el SDK de AWS.</p></div>
+            <div class="process-line">
+                <article><span>01</span><b>WEB</b><h3>Solicitud</h3><p>El usuario solicita el recurso protegido.</p></article>
+                <i>→</i><article><span>02</span><b>PHP</b><h3>Identidad</h3><p>El backend obtiene credenciales seguras.</p></article>
+                <i>→</i><article><span>03</span><b>S3</b><h3>Objeto privado</h3><p>S3 valida el permiso sobre el archivo.</p></article>
+                <i>→</i><article><span>04</span><b>KMS</b><h3>Descifrado</h3><p>KMS autoriza la clave y entrega el contenido.</p></article>
+            </div>
         </div>
     </section>
 </main>
 
-<footer class="section-shell">
-    <div class="brand footer-brand"><span class="brand-mark mini">✓</span><span>Aegis<span>Vault</span></span></div>
-    <p>Laboratorio 14 · Desarrollo de Soluciones en la Nube</p>
-    <span>Entorno académico · Sin datos sensibles</span>
-</footer>
-
+<footer><div class="shell"><div class="brand brand-footer"><span class="brand-mark"><i></i><b>A</b></span><span class="brand-copy"><strong>Aegis Cloud Archive</strong><small>LABORATORIO 14 · 2026</small></span></div><p>Seguridad en servicios AWS · Entorno académico</p></div></footer>
 <script src="assets/app.js" defer></script>
 </body>
 </html>
-

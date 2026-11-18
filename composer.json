@@ -1,0 +1,24 @@
+{
+  "name": "andy-campos/lab14-secure-gallery",
+  "description": "Demostración de contenido privado en Amazon S3 cifrado con AWS KMS.",
+  "type": "project",
+  "require": {
+    "php": "^8.2",
+    "aws/aws-sdk-php": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lab14\\\\": "src/"
+    }
+  },
+  "scripts": {
+    "serve": "php -S 127.0.0.1:8080 -t public",
+    "check": [
+      "php -l public/index.php",
+      "php -l public/api/media.php",
+      "php -l public/api/status.php",
+      "php -l src/SecureMediaService.php"
+    ]
+  }
+}
+

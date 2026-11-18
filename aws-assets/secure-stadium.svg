@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#071b29"/><stop offset=".55" stop-color="#0b3841"/><stop offset="1" stop-color="#062024"/></linearGradient>
+    <linearGradient id="field" x2="0" y2="1"><stop stop-color="#1c755d"/><stop offset="1" stop-color="#082e2a"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#86f9d9" stop-opacity=".45"/><stop offset="1" stop-color="#86f9d9" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="800" cy="330" rx="750" ry="410" fill="none" stroke="#6ce7c6" stroke-opacity=".14" stroke-width="70"/>
+  <ellipse cx="800" cy="330" rx="650" ry="330" fill="none" stroke="#bfffe9" stroke-opacity=".16" stroke-width="28"/>
+  <g fill="#d7fff4">
+    <path d="M70 295h260v18H70z" opacity=".55"/><path d="M1270 295h260v18h-260z" opacity=".55"/>
+    <g opacity=".9"><circle cx="100" cy="304" r="7"/><circle cx="128" cy="304" r="7"/><circle cx="156" cy="304" r="7"/><circle cx="184" cy="304" r="7"/><circle cx="212" cy="304" r="7"/><circle cx="240" cy="304" r="7"/><circle cx="268" cy="304" r="7"/><circle cx="296" cy="304" r="7"/></g>
+    <g opacity=".9"><circle cx="1304" cy="304" r="7"/><circle cx="1332" cy="304" r="7"/><circle cx="1360" cy="304" r="7"/><circle cx="1388" cy="304" r="7"/><circle cx="1416" cy="304" r="7"/><circle cx="1444" cy="304" r="7"/><circle cx="1472" cy="304" r="7"/><circle cx="1500" cy="304" r="7"/></g>
+  </g>
+  <ellipse cx="800" cy="745" rx="790" ry="300" fill="url(#field)"/>
+  <path d="M0 760Q800 565 1600 760" fill="none" stroke="#b5f9e5" stroke-opacity=".48" stroke-width="3"/>
+  <ellipse cx="800" cy="735" rx="170" ry="65" fill="none" stroke="#b5f9e5" stroke-opacity=".4" stroke-width="3"/>
+  <path d="M800 630v270M650 900l80-242M950 900l-80-242" stroke="#b5f9e5" stroke-opacity=".22" stroke-width="3"/>
+  <circle cx="800" cy="440" r="290" fill="url(#glow)" filter="url(#blur)"/>
+  <g transform="translate(650 245)">
+    <path d="M150 0 282 54v94c0 93-54 162-132 195C72 310 18 241 18 148V54L150 0Z" fill="#071b23" fill-opacity=".82" stroke="#76f0ce" stroke-width="8"/>
+    <path d="m88 166 39 39 86-94" fill="none" stroke="#76f0ce" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="150" cy="155" r="115" fill="none" stroke="#76f0ce" stroke-opacity=".22" stroke-width="2"/>
+  </g>
+  <text x="800" y="675" text-anchor="middle" fill="#e7fff8" font-family="Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="9">SECURE MEDIA</text>
+  <text x="800" y="715" text-anchor="middle" fill="#87b9ae" font-family="Arial, sans-serif" font-size="16" letter-spacing="5">AMAZON S3 + AWS KMS</text>
+</svg>
+
